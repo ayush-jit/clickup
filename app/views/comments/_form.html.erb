@@ -1,0 +1,13 @@
+<%= form_with(model: @task.comments.build,local: true) do |form| %>
+
+
+  <%= form.hidden_field :task_id %>
+  <div class="field">
+    <%= form.label :body, "Add a comment" %><br />
+    <%= form.text_area :body %>
+  </div><br>
+
+  <div class="actions">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+<% end %>

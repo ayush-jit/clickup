@@ -1,0 +1,7 @@
+<h2>Projects</h2>
+<% current_user.projects.each do |project| %>
+  <tr>
+    <li><%= link_to project.title, project %></li>
+  </tr>
+<% end %><br><br>
+<div class="well well-sm"><%= link_to 'New Project', new_project_path %></div>

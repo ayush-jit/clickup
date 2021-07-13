@@ -1,0 +1,46 @@
+<%= form_with(model: task) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :project_id %>
+  <div class="field">
+    <%= form.label :name, "Name your task" %><br />
+    <%= form.text_field :name %>
+    <% task.errors.full_messages_for(:name).each do |message| %>
+      <div class="text-danger"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :details, "Task details" %><br />
+    <%= form.text_field :details %>
+    <% task.errors.full_messages_for(:details).each do |message| %>
+      <div class="text-danger"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due_date, "Due date for task" %><br />
+    <%= form.date_field :due_date %>
+    <% task.errors.full_messages_for(:due_date).each do |message| %>
+      <div class="text-danger"><%= message %></div>
+    <% end %>
+  </div><br>
+
+  <div class="select">
+    <%= form.select :status, ["to_do", "in_progress", "on_hold", "on_review", "completed"] %>
+  </div><br>
+
+  <div class="actions">
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+<% end %>

@@ -1,0 +1,51 @@
+<nav class="navbar navbar-inverse">
+  <ul class="nav navbar-nav">
+    <div class="container-fluid"><br>
+      <%= link_to 'Edit', edit_task_path(@task) %> |
+      <%= link_to 'Destroy', @task, method: :delete, data: { confirm: 'Are you sure?' } %> <br>
+    </div>
+  </ul>
+</nav>
+
+<div class="row">
+  <div class="col-sm-4">
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <strong>Task Name</strong>
+      <%= @task.name %>
+    </p>
+
+    <p>
+      <strong>Task Details:</strong>
+      <%= @task.details %>
+    </p>
+
+    <p>
+      <strong>Due Date</strong>
+      <%= @task.due_date %>
+    </p>
+
+    <p>
+      <strong>Task Status</strong>
+      <%= @task.status %>
+    </p>
+<br><br><br><br>
+    <%= render partial: 'comments/form', task_id: @task.id %><br><br>
+  </div>
+
+  <div class="col-sm-8">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th><h3>Comments</h3></th>
+        </tr>
+      </thead>
+      <% @task.comments.each do |comment| %>
+      <tr>
+        <td><%= link_to comment.body, comment %></td><br>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="well well-sm">
+  <% if user_signed_in? %>
+    <h2>Hello <%= current_user.first_name %></h2>
+  <% else %>
+    <h2>Hello</h2>
+  <% end %>
+</div>

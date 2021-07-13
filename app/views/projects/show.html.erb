@@ -1,0 +1,133 @@
+<nav class="navbar navbar-inverse">
+  <ul class="nav navbar-nav">
+    <div class="container-fluid"><br>
+      <%= link_to 'Edit', edit_project_path(@project) %> |
+      <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+    </div>
+  </ul>
+</nav>
+<div class="row">
+  <div class="col-sm-8">
+    <% if @project.active? %>
+      <span class="label label-success">active</span>
+    <% else %>
+      <span class="label label-default">inactive</span>
+    <% end %>
+
+    <p>
+      <strong><h4>Project title:</h4></strong>
+      <%= @project.title %>
+    </p>
+
+    <p>
+      <strong><h4>Project Details:</h4></strong>
+      <%= @project.description %>
+    </p>
+    <%= link_to 'Create Task', new_task_path(project_id: @project.id) %>
+  </div>
+  <div id="new_task"> </div>
+  <div class="col-sm-12">
+    <h2>Tasks</h2>
+    <div class="col-sm-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>To Do</th>
+          </tr>
+        </thead>
+          <% @project.tasks.where(status: :to_do).each do |task| %>
+          <tr>
+            <td><%= link_to task.name, task, remote: true %></td>
+          </tr>
+          <% end %>
+      </table>
+    </div>
+
+    <div class="col-sm-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>In Progress</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @project.tasks.where(status: :in_progress).each do |task| %>
+          <tr>
+            <td><%= link_to task.name, task %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>On Hold</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @project.tasks.where(status: :on_hold).each do |task| %>
+          <tr>
+            <td><%= link_to task.name, task %></td>
+          </tr>
+          <% end %>
+          <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>On Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @project.tasks.where(status: :on_review).each do |task| %>
+          <tr>
+            <td><%= link_to task.name, task %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Completed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @project.tasks.where(status: :completed).each do |task| %>
+          <tr>
+            <td><%= link_to task.name, task %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-sm-8">
+    <div class="well well-sm">
+      <h3 style="display: inline-block" ><span class="glyphicon glyphicon-user"><span></h3>
+      <h2 style="display: inline-block" ><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h2>
+    </div>
+    <h4>Username: <%= current_user.username %></h4>
+    <h4>E-mail: <%= current_user.email %></h4>
+    <h4>Gender: <%= current_user.gender %></h4>
+    <h4>Mob. no: <%= current_user.phone_number %></h4>
+    <h4>Role: <%= current_user.role %></h4><br>
+    <h5 style="display: inline-block" ><span class="glyphicon glyphicon-pencil"><span></h5>
+    <h5 style="display: inline-block" ><%= link_to "Edit Profile",edit_user_registration_path %></h5>
+  </div>
+</div>

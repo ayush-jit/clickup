@@ -1,0 +1,8 @@
+<p>
+  <strong>comments:</strong>
+  <%= @comment.body %>
+</p>
+
+<%= link_to 'Edit', edit_comment_path(@comment) %> |
+<%= link_to 'Back', 'javascript:history.back()' %> |
+<%= link_to 'Destroy', @comment, method: :delete, data: { confirm: 'Are you sure?' } %>
